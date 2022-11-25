@@ -1,0 +1,63 @@
+module p1_health(input logic Reset, frame_clk, punch, kick,
+					  output logic [2:0] p1_health_stat);
+
+
+if (punch)
+	
+enum logic [2:0] {h0, h1, h2, h3, h4, h5, h6, h7} State, Next_State;
+
+logic [2:0] tmp_stat;
+
+always_ff @ (posedge Reset or posedge frame_clk )
+begin
+if (Reset)
+	begin
+		State <= h7;
+		p1_health_stat <= 3'b111;
+	end
+else
+	begin
+		State <= Next_State;
+		p1_health_stat <= tmp_stat;
+	end
+end
+
+always_comb
+begin
+	Next_State = State;
+	unique case (State)
+		h7: if (punch)
+					Next_State = h6;
+		h6: if (punch)
+					Next_State = h5;
+		h5: if (punch)
+					Next_State = h4;
+		h4: if (punch)
+					Next_State = h3;
+		h3: if (punch)
+					Next_State = h2;
+		h2: if (punch)
+					Next_State = h2;
+		h1: if (punch)
+					Next_State = h0;
+		h0: if (kick)
+					Next_State = h7;
+		default: Next_State = h7;
+	endcase
+	
+	case (State)
+		h7: tmp_stat = 3'b111;
+		h6: tmp_stat = 3'b110;
+		h5: tmp_stat = 3'b101;
+		h4: tmp_stat = 3'b100;
+		h3: tmp_stat = 3'b011;
+		h2: tmp_stat = 3'b010;
+		h1: tmp_stat = 3'b001;
+		h7: tmp_stat = 3'b000;
+		
+		default: tmp_stat = 3'b111;
+	endcase
+
+end
+
+endmodule

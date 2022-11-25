@@ -1,0 +1,67 @@
+--lpm_mux CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" DEVICE_FAMILY="MAX 10" LPM_SIZE=5 LPM_WIDTH=2 LPM_WIDTHS=3 data result sel
+--VERSION_BEGIN 18.1 cbx_lpm_mux 2018:09:12:13:04:24:SJ cbx_mgl 2018:09:12:13:10:36:SJ  VERSION_END
+
+
+-- Copyright (C) 2018  Intel Corporation. All rights reserved.
+--  Your use of Intel Corporation's design tools, logic functions 
+--  and other software and tools, and its AMPP partner logic 
+--  functions, and any output files from any of the foregoing 
+--  (including device programming or simulation files), and any 
+--  associated documentation or information are expressly subject 
+--  to the terms and conditions of the Intel Program License 
+--  Subscription Agreement, the Intel Quartus Prime License Agreement,
+--  the Intel FPGA IP License Agreement, or other applicable license
+--  agreement, including, without limitation, that your use is for
+--  the sole purpose of programming logic devices manufactured by
+--  Intel and sold by Intel or its authorized distributors.  Please
+--  refer to the applicable agreement for further details.
+
+
+
+--synthesis_resources = lut 6 
+SUBDESIGN mux_o1b
+( 
+	data[9..0]	:	input;
+	result[1..0]	:	output;
+	sel[2..0]	:	input;
+) 
+VARIABLE 
+	muxlut_data0w[4..0]	: WIRE;
+	muxlut_data1w[4..0]	: WIRE;
+	muxlut_result0w	: WIRE;
+	muxlut_result1w	: WIRE;
+	muxlut_select0w[2..0]	: WIRE;
+	muxlut_select1w[2..0]	: WIRE;
+	result_node[1..0]	: WIRE;
+	sel_ffs_wire[2..0]	: WIRE;
+	sel_node[2..0]	: WIRE;
+	w177w[3..0]	: WIRE;
+	w179w[1..0]	: WIRE;
+	w202w[0..0]	: WIRE;
+	w225w[3..0]	: WIRE;
+	w227w[1..0]	: WIRE;
+	w250w[0..0]	: WIRE;
+	w_mux_outputs175w[1..0]	: WIRE;
+	w_mux_outputs223w[1..0]	: WIRE;
+
+BEGIN 
+	muxlut_data0w[] = ( data[8..8], data[6..6], data[4..4], data[2..2], data[0..0]);
+	muxlut_data1w[] = ( data[9..9], data[7..7], data[5..5], data[3..3], data[1..1]);
+	muxlut_result0w = ((w_mux_outputs175w[0..0] & (! w202w[0..0])) # (w_mux_outputs175w[1..1] & w202w[0..0]));
+	muxlut_result1w = ((w_mux_outputs223w[0..0] & (! w250w[0..0])) # (w_mux_outputs223w[1..1] & w250w[0..0]));
+	muxlut_select0w[] = sel_node[];
+	muxlut_select1w[] = sel_node[];
+	result[] = result_node[];
+	result_node[] = ( muxlut_result1w, muxlut_result0w);
+	sel_ffs_wire[] = ( sel[2..0]);
+	sel_node[] = ( sel_ffs_wire[2..2], sel[1..0]);
+	w177w[3..0] = muxlut_data0w[3..0];
+	w179w[1..0] = muxlut_select0w[1..0];
+	w202w[0..0] = muxlut_select0w[2..2];
+	w225w[3..0] = muxlut_data1w[3..0];
+	w227w[1..0] = muxlut_select1w[1..0];
+	w250w[0..0] = muxlut_select1w[2..2];
+	w_mux_outputs175w[] = ( muxlut_data0w[4..4], ((((! w179w[1..1]) # (w179w[0..0] & w177w[3..3])) # ((! w179w[0..0]) & w177w[2..2])) & ((w179w[1..1] # (w179w[0..0] & w177w[1..1])) # ((! w179w[0..0]) & w177w[0..0]))));
+	w_mux_outputs223w[] = ( muxlut_data1w[4..4], ((((! w227w[1..1]) # (w227w[0..0] & w225w[3..3])) # ((! w227w[0..0]) & w225w[2..2])) & ((w227w[1..1] # (w227w[0..0] & w225w[1..1])) # ((! w227w[0..0]) & w225w[0..0]))));
+END;
+--VALID FILE

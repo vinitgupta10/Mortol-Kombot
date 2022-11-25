@@ -1,0 +1,40 @@
+module run(input logic Reset, frame_clk, move_right, move_left,
+			  input [7:0] keycode);
+
+enum logic [2:0] {r0, r1, r2, r3, r4, r5} State, Next_State;
+logic [2:0] run_state;
+		  
+always_ff @ (posedge Reset or posedge frame_clk )
+begin
+	if (Reset)
+		State <= r0;
+		run_state <= 3'b0;
+	else if (move_right && keycode == 8'h07)
+		State <= Next_State;
+	else
+		State <= r0;
+end
+
+always_comb
+begin
+	Next_State = State;
+	unique case (State)
+		r0:	if (keycode == 8'h07)
+					Next_State = r1;
+
+		r1:	Next_State = r2;
+		r2:	Next_State = r3;
+		r3:	Next_State = r4;
+		r4:	Next_State = r1;
+
+		default: Next_State = r0;
+	endcase
+
+	case (State)
+		r0:	run_state <= 3'b000;
+		r1:	run_state <= 3'b001;
+		r2:	run_state <= 3'b010;
+		r3:	run_state <= 3'b011;
+		r4:	run_state <= 3'b100;
+	endcase
+end

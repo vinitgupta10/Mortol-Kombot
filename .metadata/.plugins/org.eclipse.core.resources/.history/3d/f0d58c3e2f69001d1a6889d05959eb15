@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <alt_types.h>
+#include "system.h"
+#include <time.h>
+typedef unsigned short int WORD;
+
+static volatile struct TEXT_VGA_STRUCT* vga_ctrl = 0x00010000;
+struct TEXT_VGA_STRUCT {
+	alt_u8 VRAM [4]; //Week 2 - extended VRAM
+	//modify this by adding const bytes to skip to palette, or manually compute palette
+};
+
+void ai_mover(int count, WORD keycode);

@@ -1,0 +1,22 @@
+#include "ai.h"
+
+
+void ai_mover(int count, WORD keycode) {
+//	if (count % 100000
+	int x = rand() % 4;
+	if (keycode == 14) {
+		if (count < 1000) {
+			vga_ctrl->VRAM[0] = 19;
+		} else if (count < 2000) {
+			vga_ctrl->VRAM[0] = 26;
+		} else if (count < 3000) {
+			vga_ctrl->VRAM[0] = 22;
+		} else if (count < 4000) {
+			vga_ctrl->VRAM[0] = 07;
+		}
+	} else if (keycode == 14) {
+
+	} else {
+		vga_ctrl->VRAM[0] = 0;
+	}
+}
