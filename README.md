@@ -17,17 +17,17 @@ The top-level module for the Quartus project is **project.sv**
 
 ## Instructions for Running the project:
 1. Connect the FPGA to the device running the project, a VGA monitor, and a USB keyboard.
-2. Open the Project in Quartus using the Mortol_Kombot.qpf file.
+2. Open the Project in Quartus using the ```Mortol_Kombot.qpf``` file.
 
 _Individual SystemVerilog files can be edited at this stage._
 
 3. Compile the project in Quartus, and program the FPGA with the recently compiled project files.
-4. After this step, the title screen with a flashing "MORTOL KOMBOT" title and static gamemode instructions should be visible on the VGA monitor.
+4. After this step, the title screen with a flashing **MORTOL KOMBOT** title and static gamemode instructions should be visible on the VGA monitor.
 
 _User input wouldn't necessarily change the game state at this stage._
 
 5. To start playing the game, open the software files included with this project in Eclipse.
-6. Generate a BSP, build the project in Eclipse, and then run configurations.
+6. Generate a **BSP**, build the project in Eclipse, and then run configurations.
 7. After the FPGA is successfully loaded with NIOS II, users can start playing the game in single player mode ```Enter``` or two-player mode ```Spacebar``` using their USB keyboard.
 
 ## Instruction keys for playing:
