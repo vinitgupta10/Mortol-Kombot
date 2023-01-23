@@ -1,7 +1,0 @@
-module player2()
-
-Avalon read, write stuff
-
-copy box
-
-if (signal x = true) assume keycode x is up
