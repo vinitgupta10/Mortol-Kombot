@@ -8,11 +8,11 @@ To make gameplay smoother, several animations and game features from retro fight
 
 ## Description of Project Folders/Files:
 The top-level module for the Quartus project is **project.sv**
-**Folder** ```.sv code``` holds the functionality of the game and contains most of the SystemVerilog modules.
-**Folder** ```IP``` holds the file(s) for generating a custom IP core.
-**Folder** ```ROM_data``` holds the sprite and background ROM data acquired through PNG images converted to bit data along with the modules render that data as animations.
-**Folder** ```software``` holds the C code used by NIOS II and is directly accessed by Eclipse through Quartus.
-**Folder** ```tmp``` holds commented out code including additional approaches to various aspects of the game.
+- **Folder** ```.sv code``` holds the functionality of the game and contains most of the SystemVerilog modules.
+- **Folder** ```IP``` holds the file(s) for generating a custom IP core.
+- **Folder** ```ROM_data``` holds the sprite and background ROM data acquired through PNG images converted to bit data along with the modules render that data as animations.
+- **Folder** ```software``` holds the C code used by NIOS II and is directly accessed by Eclipse through Quartus.
+- **Folder** ```tmp``` holds commented out code including additional approaches to various aspects of the game.
 The remaining folders are system-generated and do not need to be edited individually.
 
 ## Instructions for Running the project:
@@ -27,7 +27,7 @@ The remaining folders are system-generated and do not need to be edited individu
 
 ## Instruction keys for playing:
 1. ```R``` for restart/reset
-2. ```W``````A``````S``````D``` for Player 1 movements
+2. ```W```, ```A```, ```S```, ```D``` for Player 1 movements
 3. ```K``` for P1 kick, ```P``` for P1 punch
 4. Arrow Keys for Player 2 movements
 5. ```>``` for P2 kick, ```?``` for P2 punch 
